@@ -1,14 +1,11 @@
 # =============================================================================
-# main.py — Entry point for the Snake Game
+# main.py — Entry point
 #
-# Install dependencies:
-#   pip install -r requirements.txt
-#
-# Run:
-#   python main.py
+# Install:  pip install -r requirements.txt
+# Run:      python main.py
 # =============================================================================
 
-from game import Game
+from snake_game.game import Game
 
 
 def main():

@@ -1,11 +1,12 @@
 # =============================================================================
-# score_manager.py — Persistent score & statistics using JSON
+# snake_game/score_manager.py — Persistent score & statistics (JSON)
 # =============================================================================
 
 import json
 import os
+from snake_game.constants import DATA_DIR
 
-SAVE_FILE = os.path.join(os.path.dirname(__file__), "stats.json")
+SAVE_FILE = os.path.join(DATA_DIR, "stats.json")
 
 _DEFAULTS = {
     "high_score":    0,
@@ -16,30 +17,28 @@ _DEFAULTS = {
 
 
 class ScoreManager:
-    """Loads, updates, and persists game statistics."""
+    """Loads, updates, and persists game statistics to data/stats.json."""
 
     def __init__(self):
         self._data = dict(_DEFAULTS)
+        os.makedirs(DATA_DIR, exist_ok=True)
         self._load()
-
-    # ── Persistence ───────────────────────────────────────────────────────────
 
     def _load(self):
         if os.path.exists(SAVE_FILE):
             try:
                 with open(SAVE_FILE, "r") as f:
                     saved = json.load(f)
-                    # Merge to handle any new keys added in future versions
-                    self._data.update({k: saved[k] for k in _DEFAULTS if k in saved})
+                self._data.update({k: saved[k] for k in _DEFAULTS if k in saved})
             except (json.JSONDecodeError, IOError):
-                pass  # Corrupt file — start fresh
+                pass
 
     def save(self):
         try:
             with open(SAVE_FILE, "w") as f:
                 json.dump(self._data, f, indent=2)
         except IOError:
-            pass  # Non-fatal — running without write access
+            pass
 
     # ── Public API ────────────────────────────────────────────────────────────
 
@@ -61,8 +60,8 @@ class ScoreManager:
 
     def record_game(self, score: int, food_eaten: int, snake_length: int):
         """Call once at the end of every game session."""
-        self._data["games_played"]  += 1
-        self._data["total_food"]    += food_eaten
+        self._data["games_played"] += 1
+        self._data["total_food"]   += food_eaten
         if score > self._data["high_score"]:
             self._data["high_score"] = score
         if snake_length > self._data["longest_snake"]:
