@@ -4,9 +4,10 @@
 
 import json
 import os
-from snake_game.constants import DATA_DIR
+import sys
 
-SAVE_FILE = os.path.join(DATA_DIR, "stats.json")
+# Detect WebAssembly / Pygbag environment
+_IS_WEB = sys.platform in ("emscripten", "wasi")
 
 _DEFAULTS = {
     "high_score":    0,
@@ -17,25 +18,36 @@ _DEFAULTS = {
 
 
 class ScoreManager:
-    """Loads, updates, and persists game statistics to data/stats.json."""
+    """
+    Loads, updates, and persists game statistics.
+    - Desktop: saves to data/stats.json
+    - Browser (Pygbag/WASM): keeps stats in memory only (no file I/O)
+    """
 
     def __init__(self):
         self._data = dict(_DEFAULTS)
-        os.makedirs(DATA_DIR, exist_ok=True)
-        self._load()
+        if not _IS_WEB:
+            from snake_game.constants import DATA_DIR
+            self._save_file = os.path.join(DATA_DIR, "stats.json")
+            os.makedirs(DATA_DIR, exist_ok=True)
+            self._load()
+        else:
+            self._save_file = None
 
     def _load(self):
-        if os.path.exists(SAVE_FILE):
+        if self._save_file and os.path.exists(self._save_file):
             try:
-                with open(SAVE_FILE, "r") as f:
+                with open(self._save_file, "r") as f:
                     saved = json.load(f)
                 self._data.update({k: saved[k] for k in _DEFAULTS if k in saved})
             except (json.JSONDecodeError, IOError):
                 pass
 
     def save(self):
+        if not self._save_file:
+            return   # Web — in-memory only
         try:
-            with open(SAVE_FILE, "w") as f:
+            with open(self._save_file, "w") as f:
                 json.dump(self._data, f, indent=2)
         except IOError:
             pass

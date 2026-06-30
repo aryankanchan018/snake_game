@@ -12,6 +12,9 @@ env/
 # Game save data (personal stats — not committed)
 data/stats.json
 
+# Pygbag build cache (not needed in repo)
+build/
+
 # IDE
 .vscode/
 .idea/

@@ -1,17 +1,23 @@
 # =============================================================================
-# main.py — Entry point
+# main.py — Entry point (Pygbag-compatible async loop)
 #
-# Install:  pip install -r requirements.txt
-# Run:      python main.py
+# Local:   python main.py
+# Web:     pygbag main.py  (builds to web/index.html)
 # =============================================================================
 
+import asyncio
+import pygame
 from snake_game.game import Game
 
 
-def main():
+async def main():
     game = Game()
-    game.run()
+
+    # Pygbag requires the main loop to yield control each frame via asyncio.sleep(0)
+    while True:
+        game.tick()
+        await asyncio.sleep(0)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

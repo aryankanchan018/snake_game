@@ -4,6 +4,14 @@ A modern, feature-rich Snake Game built with **Python** and **Pygame** — featu
 
 ---
 
+## 🎮 Play in Browser
+
+**👉 [Click here to play instantly](https://aryankanchan018.github.io/snake_game)**
+
+> No install needed — runs directly in your browser via WebAssembly (Pygbag)
+
+---
+
 ## 🎮 Preview
 
 ```

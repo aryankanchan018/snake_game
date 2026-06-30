@@ -90,13 +90,18 @@ class Game:
 
     # ── Main Loop ─────────────────────────────────────────────────────────────
 
+    def tick(self):
+        """Advance one frame. Called by the async loop in main.py."""
+        self._tick += 1
+        self._handle_events()
+        self._update()
+        self._draw()
+        self.clock.tick(FPS)
+
     def run(self):
+        """Blocking loop for direct local execution (non-async fallback)."""
         while True:
-            self._tick += 1
-            self._handle_events()
-            self._update()
-            self._draw()
-            self.clock.tick(FPS)
+            self.tick()
 
     # ── Input ─────────────────────────────────────────────────────────────────
 
@@ -115,7 +120,8 @@ class Game:
             if s in (State.PLAYING, State.PAUSED, State.COUNTDOWN, State.STATS):
                 self._state = State.MENU
             else:
-                _quit()
+                # In browser (Pygbag) we can't quit — go back to menu instead
+                self._state = State.MENU
             return
 
         if s == State.MENU:
