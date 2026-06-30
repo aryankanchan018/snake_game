@@ -1,112 +1,131 @@
 # 🐍 Snake Game
 
-A modern, feature-rich Snake Game built with **Python** and **Pygame** — featuring glow effects, power-ups, particle bursts, combo scoring, persistent stats, and an animated menu.
-
----
-
-## 🎮 Play in Browser
-
-**👉 [Click here to play instantly](https://aryankanchan018.github.io/snake_game)**
-
-> No install needed — runs directly in your browser via WebAssembly (Pygbag)
-
----
-
-## 🎮 Preview
-
-```
-Arrow Keys → Move    |    P → Pause    |    R → Restart    |    ESC → Quit
-```
+A modern Snake Game built with **Python** and **Pygame**, featuring smooth gameplay, visual effects, power-ups, combo scoring, and persistent statistics.
 
 ---
 
 ## ✨ Features
 
-| Category | Details |
-|---|---|
-| 🎨 Visuals | Gradient background, glowing snake head, pulsing food, particle bursts |
-| ⚡ Power-ups | Speed Boost, Slow Motion, Double Score — spawns every 5 foods |
-| ⭐ Golden Food | Appears every 8 foods, worth 50 pts with rotating star animation |
-| 🔥 Combo System | Eat within 3 s to chain multipliers (+50% per level) |
-| 🐍 Snake Skins | Classic, Neon, Lava, Royal |
-| 🎚️ Difficulty | Easy / Medium / Hard with auto speed scaling |
-| 💾 Persistence | High score, games played, food eaten, longest snake saved to `data/stats.json` |
-| 🔊 Sounds | Procedurally synthesised — no audio files needed |
-| 📊 Stats Screen | Full lifetime statistics screen |
+* Modern UI with animated effects
+* Multiple difficulty levels
+* Power-up system
+* Golden food rewards
+* Combo score multipliers
+* Multiple snake skins
+* Particle animations
+* Persistent high scores and statistics
+* Pause, restart, and menu system
+* No external assets required
 
 ---
 
-## 📁 Project Structure
+## 📸 Gameplay
 
-```
+| Feature               | Description                              |
+| --------------------- | ---------------------------------------- |
+| 🎨 Visual Effects     | Glow effects, animations, particles      |
+| ⚡ Power-Ups           | Speed Boost, Slow Motion, Double Score   |
+| ⭐ Golden Food         | Bonus food with extra points             |
+| 🔥 Combo System       | Chain food pickups for score multipliers |
+| 🎚️ Difficulty Levels | Easy, Medium, Hard                       |
+| 🐍 Snake Skins        | Classic, Neon, Lava, Royal               |
+| 📊 Statistics         | High score and lifetime game stats       |
+
+---
+
+## 📂 Project Structure
+
+```text
 snake_game/
-├── main.py                  # Entry point — run this
+├── main.py
 ├── requirements.txt
 ├── README.md
-├── .gitignore
-├── snake_game/              # Game package
-│   ├── __init__.py
-│   ├── constants.py         # Colors, speeds, grid config
-│   ├── snake.py             # Snake movement, rendering, glow eyes
-│   ├── food.py              # Food, GoldenFood, PowerUp entities
-│   ├── particles.py         # Particle burst system
-│   ├── score_manager.py     # JSON-based persistent statistics
-│   ├── ui.py                # All screens: menu, HUD, pause, game over
-│   └── game.py              # Game state machine + main loop
+├── snake_game/
+│   ├── constants.py
+│   ├── snake.py
+│   ├── food.py
+│   ├── particles.py
+│   ├── score_manager.py
+│   ├── ui.py
+│   └── game.py
 └── data/
-    └── stats.json           # Auto-created on first run (gitignored)
+    └── stats.json
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation
 
-### 1. Clone the repo
+### Clone Repository
 
 ```bash
 git clone https://github.com/aryankanchan018/snake_game.git
 cd snake_game
 ```
 
-### 2. Install dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the game
+### Run Game
 
 ```bash
 python main.py
 ```
 
-> Requires **Python 3.10+** and **pygame 2.1+**
+---
+
+## 🎮 Controls
+
+| Key           | Action          |
+| ------------- | --------------- |
+| ↑ ↓ ← →       | Move Snake      |
+| P             | Pause / Resume  |
+| R             | Restart         |
+| ESC           | Quit            |
+| Enter / Space | Start Game      |
+| S             | Open Statistics |
 
 ---
 
-## 🕹️ Controls
+## 🛠️ Built With
 
-| Key | Action |
-|---|---|
-| Arrow Keys | Move snake |
-| P | Pause / Resume |
-| R | Restart |
-| ESC | Quit / Back to Menu |
-| S (menu) | Open Statistics |
-| ← → (menu) | Change difficulty |
-| ↑ ↓ (menu) | Change skin |
-| Enter / Space | Start game |
+* Python 3.10+
+* Pygame 2.6
 
 ---
 
-## 🛠️ Tech Stack
+## 📈 Future Improvements
 
-- **Python 3.10+**
-- **Pygame 2.6**
-- No external assets — all sounds and visuals are generated in code
+* Sound settings menu
+* Additional skins
+* Achievement system
+* Online leaderboard
+* Mobile version
 
 ---
 
-## 📜 License
+## 🤝 Contributing
 
-MIT License — free to use, modify, and distribute.
+Contributions, issues, and feature requests are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+### Author
+
+**Aryan Kanchan**
+
+GitHub: https://github.com/aryankanchan018
